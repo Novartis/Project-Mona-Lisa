@@ -1,0 +1,79 @@
+# Copyright 2017 Novartis Institutes for BioMedical Research Inc. Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+swagger: '2.0'
+info:
+  title: PML Training Services API
+  description: PML Training Services API
+  version: "1.0.0"
+# the domain of the service
+host: TODO_IP_ADDRESS
+# array of all schemes that your API supports
+schemes:
+  - http
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /training/shapes/prompt:
+    get:
+      summary: Training Prompt Images
+      description:
+        The Training Prompt Shapes endpoint returns an SVG image and a label, or name, for the shape that is returned. The prompt shapes are the images that are displayed to the viewer as a reference image, that represents the name of the shape.
+      tags:
+        - Shapes
+      responses:
+        200:
+          description: A json object containing the keys called
+            'img_data' and 'label'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PromptImage'
+        400:
+          description: Unexpected error
+  /training/shapes/sketch:
+    post:
+      summary: Storing sketches for training data.
+      description: The sketch users draw and the label of the sketch will be stored in a database and storage.
+      parameters:
+        - name: img
+          in: string
+          description: base64-encoded png image data
+          required: true
+          type: string
+        - name: label
+          in: string
+          description:
+          required: true
+          type: string
+      tags:
+        - Shapes
+      responses:
+        200:
+          description: An array of products
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PromptSketch'
+        400:
+          description: Unexpected Error
+definitions:
+  PromptImage:
+    type: object
+    properties:
+      imgData:
+        type: string
+        description: A serialized png image file base64-encoded.
+      label:
+        type: string
+        description: label or name of the item in the image.
+  PromptSketch:
+    type: object
+    properties:
+      img:
+        type: string
+        description: base64-encoded png image data.
+      label:
+        type: string
+        description: label or name of the item in the image.
