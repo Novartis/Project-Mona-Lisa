@@ -10,7 +10,7 @@
     "es6-promise": "4.1.0",
     "fs": "0.0.1-security",
     "isomorphic-fetch": "2.2.1",
-    "lodash": "4.16.1",
+    "lodash": "4.17.19",
     "prop-types": "15.5.7",
     "react": "15.5.4",
     "react-bootstrap": "0.31.0",
