@@ -23,7 +23,7 @@ numpy==1.13.1
 pbr==3.1.1
 protobuf==3.3.0
 python-dateutil==2.6.0
-PyYAML==3.12
+PyYAML==5.4
 s3transfer==0.1.10
 scipy==0.19.1
 six==1.10.0
